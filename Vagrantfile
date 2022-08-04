@@ -1,17 +1,10 @@
-VAGRANTFILE_API_VERSION = "2"
-
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure("2") do |config|
 
   config.vm.synced_folder "../../", "/vagrant"
 
   config.vm.define :ubuntu do |ubuntu|
-    ubuntu.vm.box = "hashicorp/precise64"
-    ubuntu.vm.provision "shell", path: "vagrant_ubuntu_provisioning.sh"
+    ubuntu.vm.box = "generic/ubuntu2204"
+    ubuntu.vm.provision "shell",
+      inline: "apt-get update && apt-get install -y git expect tmux"
   end
-
-  config.vm.define :centos do |centos|
-    centos.vm.box = "chef/centos-6.5"
-    centos.vm.provision "shell", path: "vagrant_centos_provisioning.sh"
-  end
-
 end
