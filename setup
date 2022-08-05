@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x
 
 # invoke this script from your projects root directory
 
@@ -72,14 +73,15 @@ symlink_test_helpers() {
 	fi
 }
 
-copy_travis_yml() {
-	local file=".travis.yml"
-	if ! undo; then
-		cp "lib/tmux-test/${file}" "$file"
-	else
-		restore "$file"
-	fi
-}
+# TODO: Perhaps replace this with github workflows
+# copy_travis_yml() {
+# 	local file=".travis.yml"
+# 	if ! undo; then
+# 		cp "lib/tmux-test/${file}" "$file"
+# 	else
+# 		restore "$file"
+# 	fi
+# }
 
 main() {
 	add_files_to_gitignore
@@ -87,7 +89,7 @@ main() {
 	create_directory_for_tests
 	symlink_internal_test_runner
 	symlink_test_helpers
-	copy_travis_yml
+	#copy_travis_yml
 }
 main
 
