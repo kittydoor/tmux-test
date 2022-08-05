@@ -2,7 +2,8 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-source $CURRENT_DIR/helpers/helpers.sh
+#shellcheck source=tests/helpers/helpers.sh
+source "$CURRENT_DIR/helpers/helpers.sh"
 
 number_of_windows() {
 	tmux list-windows |
@@ -15,7 +16,8 @@ main() {
 	tmux new -d
 	tmux new-window
 
-	local number_of_windows="$(number_of_windows)"
+	local number_of_windows
+	number_of_windows="$(number_of_windows)"
 	if ! [ "$number_of_windows" -eq 2 ]; then
 		fail_helper "Incorrect number of windows. Expected 2, got $number_of_windows"
 	fi
