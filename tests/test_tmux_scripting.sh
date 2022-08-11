@@ -2,7 +2,6 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-#shellcheck source=tests/helpers/helpers.sh
 source "$CURRENT_DIR/helpers/helpers.sh"
 
 number_of_windows() {
